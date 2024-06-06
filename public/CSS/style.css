@@ -1,0 +1,45 @@
+.conteiner
+{
+    display:flex;
+    justify-content: space-between;
+    @media (max-width: 769px) {
+        padding: 0 10px;
+        flex-wrap: wrap;
+      }
+
+}
+
+.button1
+{
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1; 
+
+}
+
+.button1:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 55px;
+
+  }
+
+
+  i{
+    margin-right: 10px;
+    font-size: 25px;
+  }
+
+
+
+
+

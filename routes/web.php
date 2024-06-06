@@ -39,14 +39,13 @@ Route::get('/teachers-list', [TeacherController::class, 'displayTeachers'])->nam
 
 Route::post('/teachers/{teacher}/vote', [TeacherController::class, 'updateVote'])->name('teachers.vote');
 
-
+Route::get('/top-teachers', [TeacherController::class, 'showTopTeachers'])->name('top-teachers');
 
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
 Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
 
-
-Route::get('/delete-teachers', [TeacherController::class, 'showDeletePage'])->name('teachers.deletePage');
-Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+Route::resource('departments', DepartmentController::class)->only(['index', 'destroy']);
+Route::resource('departments', DepartmentController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

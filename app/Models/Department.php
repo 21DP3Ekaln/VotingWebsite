@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
-    
+
     public function teachers()
     {
         return $this->hasMany(Teachers::class);
@@ -21,5 +21,5 @@ class Department extends Model
     }
 
 
-    protected $fillable = ['name'];  // Specify the fields allowed for mass assignment
+    protected $fillable = ['name'];  
 }

@@ -9,17 +9,61 @@ class DepartmentController extends Controller
 {
     public function create()
     {
-        return view('departments.create'); // This assumes you'll create a 'create.blade.php' file in a 'departments' folder under 'resources/views'
+        return view('departments.create');
     }
 
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'name' => 'required|unique:departments', // Department name must be unique
+        'name' => 'required|unique:departments',
     ]);
 
-    Department::create($validatedData); // Use the fully qualified namespace 
+    Department::create($validatedData);
 
     return back()->with('success', 'Department created successfully.');
 }
+
+public function index()
+{
+    $departments = Department::all();
+    return view('departments.index', compact('departments'));
+}
+
+public function destroy(Department $department)
+{
+
+    if ($department->users()->exists()) {
+        return redirect()->back()->with('error', 'Cannot delete department with associated users.');
+    }
+
+
+    if ($department->teachers()->exists()) {
+        return redirect()->back()->with('error', 'Cannot delete department with associated teachers.');
+    }
+
+    $department->delete();
+    return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
+}
+
+
+public function edit(Department $department)
+{
+    return view('departments.edit', compact('department'));
+}
+
+
+public function update(Request $request, Department $department)
+{
+    $request->validate([
+        'name' => 'required|unique:departments,name,' . $department->id,
+    ]);
+
+    $department->update($request->all());
+    return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
+}
+
+
+
+
+
 }
