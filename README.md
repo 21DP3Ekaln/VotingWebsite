@@ -13,3 +13,9 @@ php artisan key:generate
 php artisan migrate
 
 php artisan serve
+
+Izmantoju tehnoloģijas:
+Visual studio code;
+PHP;
+Laravel breeze,
+Laragon MySQL;
